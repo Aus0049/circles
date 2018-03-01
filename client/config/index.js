@@ -20,7 +20,7 @@ const config = {
 
     dist_path: path.resolve(__dirname, '../dist'),
     dist_js_path: path.resolve(__dirname, '../dist/js'),
-    dist_asset_path: path.resolve(__dirname, '../dist/asset'),
+    dist_asset_path: path.resolve(__dirname, '../dist/assets/'),
     dist_style_path: path.resolve(__dirname, '../dist/style'),
 
     client_server: 'localhost',

@@ -29,15 +29,16 @@ export default function render(req, res, store) {
         </Provider>
     );
 
-    //<Route>中访问/,重定向到/home路由时
+    // <Route>中访问/,重定向到/home路由时
     if (context.url) {
         res.redirect('/home');
         return;
     }
 
     const main = getAssets();
-    const jsPath = main.javascript.main;
-    const cssPath = main.styles.main;
+    const app = main.javascript.app;
+    const vendor = main.javascript.vendor;
+    const style = main.styles.app;
 
     return `
     <!DOCTYPE html>
@@ -45,24 +46,19 @@ export default function render(req, res, store) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="theme-color" content="#000000">
-        <link rel="manifest" href="/manifest.json">
-        <link rel="shortcut icon" href="/movie.ico"> 
-        <link href=${cssPath} rel="stylesheet"></link>
-        <title>homepage SSR</title>
+        <link href=${style} rel="stylesheet"></link>
+        <title>home SSR</title>
     </head>
     <body>
-        <noscript>
-        You need to enable JavaScript to run this app.
-        </noscript>
         <div id="root">
-        ${html}
+            ${html}
         </div>
     </body>
     <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
     </script>
-    <script src=${jsPath}></script>
+    <script src=${vendor}></script>
+    <script src=${app}></script>
     </html>
     `
 }
