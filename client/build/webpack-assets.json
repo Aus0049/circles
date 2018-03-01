@@ -1,0 +1,11 @@
+{
+  "javascript": {
+    "app": "../dist/assetsapp_0512f2cdd0050ded3c8f.js",
+    "vendor": "../dist/assetsvendor_[hash:base64:3].js"
+  },
+  "styles": {},
+  "assets": {},
+  "webpack": {
+    "version": "2.6.1"
+  }
+}

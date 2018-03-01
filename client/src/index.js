@@ -1,0 +1,37 @@
+/**
+ * Created by Aus on 2018/3/1.
+ */
+import React from 'react';
+import { hydrate } from 'react-dom';
+import thunk from 'redux-thunk'
+import reduxLogger from 'redux-logger'
+import {createStore, compose, applyMiddleware, combineReducers} from "redux"
+import { BrowserRouter as Router, } from "react-router-dom"
+import {Provider} from "react-redux"
+import reducer from "./reducers/"
+import Routes from "./route"
+
+// createStore
+const middleware = [thunk, reduxLogger];
+
+const store = createStore(
+    reducer,
+    window.__INITIAL_STATE__,
+    compose(
+        applyMiddleware(...middleware),
+    )
+);
+
+store.subscribe(() => {
+    console.log('store subscribe');
+    console.log(store.getState());
+});
+
+hydrate(
+    <Provider store={store}>
+        <Router>
+            <Routes></Routes>
+        </Router>
+    </Provider>,
+    document.getElementById('root')
+);

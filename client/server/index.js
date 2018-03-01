@@ -1,6 +1,11 @@
 /**
  * Created by Aus on 2018/2/28.
  */
+require('babel-polyfill');
+
+// Node babel source map support
+require('source-map-support').install();
+
 require('babel-register')({
     presets: ['es2015', 'react-app']
 })

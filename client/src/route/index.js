@@ -6,7 +6,7 @@ import {Route, Redirect} from "react-router-dom";
 import Layout from '../layout';
 import Home from '../containers/home';
 
-export default class Route extends React.Component {
+export default class Routes extends React.Component {
     render() {
         return (
             <Layout>
