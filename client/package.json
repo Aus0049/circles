@@ -8,8 +8,9 @@
     "url": "git+https://github.com/Aus0049/circles.git"
   },
   "scripts": {
-    "ssr": "NODE_ENV=development node ./server/index",
-    "deploy": "rimraf dist && NODE_ENV=development webpack --config build/webpack.config.dev.js"
+    "start": "node ./server/dev",
+    "deploy": "rimraf dist && NODE_ENV=development webpack --config build/webpack.config.dev.js",
+    "ssr": "NODE_ENV=development node ./server/index"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "asset-require-hook": "^1.2.0",
+    "assets-webpack-plugin": "^3.5.1",
     "autoprefixer": "^8.0.0",
     "babel-loader": "^7.1.3",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -47,6 +49,7 @@
     "babel-preset-react-app": "^3.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
+    "connect-history-api-fallback": "^1.5.0",
     "css-loader": "^0.28.10",
     "css-modules-require-hook": "^4.2.3",
     "debug": "^3.1.0",
@@ -56,7 +59,10 @@
     "postcss-loader": "^2.1.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
+    "url-loader": "^0.6.2",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^3.1.0"
+    "webpack-dev-middleware": "^3.0.0",
+    "webpack-dev-server": "^3.1.0",
+    "webpack-hot-middleware": "^2.21.1"
   }
 }

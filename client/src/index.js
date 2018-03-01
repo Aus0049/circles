@@ -10,7 +10,7 @@ import { BrowserRouter as Router, } from "react-router-dom"
 import {Provider} from "react-redux"
 import reducer from "./reducers/"
 import Routes from "./route"
-import './style/index.scss';
+import '../public/style/index.scss';
 
 // createStore
 const middleware = [thunk, reduxLogger];
