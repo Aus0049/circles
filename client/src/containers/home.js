@@ -7,11 +7,9 @@ export default class Home extends Component {
     render() {
         return (
             <div className="header-container">
-                <div className="header-left">
-                </div>
+                <div className="header-left" />
                 <div className="header-title">朋友圈</div>
-                <div className="header-right">
-                </div>
+                <div className="header-right" />
             </div>
         )
     }

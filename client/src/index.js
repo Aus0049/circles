@@ -34,7 +34,7 @@ const currentRender = module.hot ? render : hydrate ;
 currentRender(
     <Provider store={store}>
         <Router>
-            <Routes></Routes>
+            <Routes />
         </Router>
     </Provider>,
     document.getElementById('root')
