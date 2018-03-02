@@ -1,0 +1,12 @@
+{
+  "javascript": {
+    "app": "/assets/js/app_b769b6dc2eacb0757a24.js"
+  },
+  "styles": {
+    "app": "/assets/css/app_b769b6dc2eacb0757a24.css"
+  },
+  "assets": {},
+  "webpack": {
+    "version": "2.6.1"
+  }
+}

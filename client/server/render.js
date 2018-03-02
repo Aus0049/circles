@@ -13,7 +13,7 @@ import Routes from '../src/route';
 
 function getAssets() {
     return getAssets.assets || (() => {
-            getAssets.assets = JSON.parse(fs.readFileSync(path.join(__dirname, '../build/webpack-assets.json')))
+            getAssets.assets = JSON.parse(fs.readFileSync(path.join(__dirname, '../webpack-assets.json')));
             return getAssets.assets
         })()
 }
@@ -37,7 +37,6 @@ export default function render(req, res, store) {
 
     const main = getAssets();
     const app = main.javascript.app;
-    const vendor = main.javascript.vendor;
     const style = main.styles.app;
 
     return `
@@ -57,7 +56,6 @@ export default function render(req, res, store) {
     <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
     </script>
-    <script src=${vendor}></script>
     <script src=${app}></script>
     </html>
     `

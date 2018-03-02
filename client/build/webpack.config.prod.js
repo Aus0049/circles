@@ -8,16 +8,10 @@
  * 3. css文件合并压缩
  * 4. 生成webpack.assets.json文件
  */
-
 const config = require('../config/');
 const webpack = require('webpack');
 // 合并css文件的插件
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// 处理文件关系插件
-const AssetsPlugin = require('assets-webpack-plugin');
-const assetsPluginInstance = new AssetsPlugin({
-    path: config.assets_json_path
-});
 // 同构处理静态资源的插件
 const webpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsPluginIns =
@@ -72,13 +66,11 @@ const webpackConfig = {
     },
     plugins: [
         webpackIsomorphicToolsPluginIns,
-        assetsPluginInstance,
         new ExtractTextPlugin({
             filename: 'assets/css/[name]_[hash].css',
         }),
         new webpack.DefinePlugin(config.globals),
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
             output: {
                 comments: false,  // remove all comments

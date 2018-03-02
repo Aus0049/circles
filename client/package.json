@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=development node ./server/dev",
-    "deploy": "rimraf dist && NODE_ENV=development webpack --config build/webpack.config.dev.js",
+    "deploy": "rimraf dist && NODE_ENV=production webpack --config build/webpack.config.prod.js",
     "ssr": "NODE_ENV=production node ./server/index"
   },
   "keywords": [],

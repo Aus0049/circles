@@ -18,7 +18,7 @@ const config = {
 
     dist_path: path.resolve(__dirname, '../dist'),
     dist_asset_path: path.resolve(__dirname, '../dist/assets/'),
-    assets_json_path: path.join(__dirname, 'build'),
+    assets_json_path: path.join(__dirname, '../'),
 
     client_server: 'localhost',
     client_port: 3000,

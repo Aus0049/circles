@@ -29,4 +29,4 @@ global.webpackIsomorphicTools = new WebpackIsomorphicTools(require('../build/web
         // (it must reside in a separate *.js file
         //  in order for the whole thing to work)
         require('./app');
-    })
+    });
