@@ -14,21 +14,22 @@ const port = process.env.PORT || '3000';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname,'../assets')));
-// app.use(express.static(path.join(__dirname,'../public')));
 app.use(express.static(path.join(__dirname,'../dist')));
 
 app.use('*', (req, res, next) => {
 
     const { promises, store } = fetch(req);
 
-    Promise.all(promises).then(x => {
-        const html = render(req, res, store);
-        res.send(html)
-    }).catch(x=>{
-        console.log(x);
-        res.end('server error,please visit later')
-    })
+    const html = render(req, res, store);
+    res.send(html);
+
+    // Promise.all(promises).then(x => {
+    //     const html = render(req, res, store);
+    //     res.send(html);
+    // }).catch(x=>{
+    //     console.log(x);
+    //     res.end('server error,please visit later')
+    // })
 
 });
 

@@ -46,7 +46,7 @@ export default function render(req, res, store) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href=${style} rel="stylesheet"></link>
-        <title>home SSR</title>
+        <title>SSR</title>
     </head>
     <body>
         <div id="root">

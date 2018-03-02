@@ -8,46 +8,29 @@ p, ul, li {
   padding: 0;
 }
 
-// header
 .header-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-  display: flex;
-  width: 100%;
-  height: 45px;
-  overflow: hidden;
-  padding: 0 20px;
-  background: $viColor;
-  color: #fff;
-  font-size: 18px;
-  line-height: 45px;
+  .logo {
+    display: inline-block;
+    padding-right: 20px;
 
-  .header-left {
-    flex: 1;
-    text-align: left;
-
+    img {
+      display: block;
+      width: 50px;
+      height: 50px;
+    }
   }
 
-  .header-title {
-    flex: 1;
-    text-align: center;
+  .link {
+    display: inline-block;
+    padding-right: 20px;
+    font-size: 14px;
+    line-height: 50px;
+    vertical-align: top;
+
+    a {
+      display: block;
+    }
   }
-
-  .header-right {
-    flex: 1;
-    text-align: right;
-  }
-}
-
-.page-container {
-  margin-top: 45px;
-}
-
-.home-container {
-  background: #fff;
 }
 
 
