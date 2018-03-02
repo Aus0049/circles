@@ -14,7 +14,6 @@ const webpackConfig = {
     devtool: 'source-map',
     entry: {
         app: [
-            'webpack-hot-middleware/client?path=/__webpack_hmr', // 热更新文件
             config.entry_path // 入口文件
         ],
         vendor: [ // 公共文件包
@@ -45,6 +44,7 @@ const webpackConfig = {
             {
                 test: /\.scss$/,
                 use: [
+                    {loader: 'style-loader'},
                     {loader: 'css-loader'},
                     {loader: 'postcss-loader'},
                     {loader: 'sass-loader'}
@@ -82,7 +82,7 @@ const webpackConfig = {
         }),
         new webpack.DefinePlugin(config.globals),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 };
 

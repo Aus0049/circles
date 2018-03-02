@@ -2,7 +2,7 @@
  * Created by Aus on 2018/3/1.
  */
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import thunk from 'redux-thunk'
 import reduxLogger from 'redux-logger'
 import {createStore, compose, applyMiddleware, combineReducers} from "redux"
@@ -28,7 +28,10 @@ store.subscribe(() => {
     console.log(store.getState());
 });
 
-hydrate(
+// 处理客户端渲染和服务端渲染切换
+const currentRender = module.hot ? render : hydrate ;
+
+currentRender(
     <Provider store={store}>
         <Router>
             <Routes></Routes>

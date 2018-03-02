@@ -8,7 +8,7 @@ const path = require('path');
 const config = {
     // 常规路径
     base_path: path.resolve(__dirname, '..'),
-    src_path: path.resolve(__dirname, '../src/'),
+    src_path: path.join(__dirname, 'src'),
     components_path: path.resolve(__dirname, '../src/components'),
     public_path: path.join(__dirname, 'src', 'public'),
     style_path: path.resolve(__dirname, '../src/style/'),
