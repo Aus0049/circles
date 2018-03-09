@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {actions} from '../actions';
+import {actionCreator} from '../store/actions/layout';
 // import '../style/index.scss';
 
 class Layout extends Component {
@@ -17,4 +17,4 @@ class Layout extends Component {
     }
 }
 
-export default connect(null, dispatch=> {return { ...bindActionCreators(actions,dispatch), dispatch}})(Layout)
+export default connect(null, dispatch=> {return { ...bindActionCreators(actionCreator,dispatch), dispatch}})(Layout)

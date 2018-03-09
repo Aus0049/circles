@@ -3,10 +3,10 @@
  */
 import {combineReducers} from "redux";
 
-import home from './home';
+import layout from './layout';
 
 const reducer = combineReducers({
-    home
+    layout
 });
 
 export default reducer

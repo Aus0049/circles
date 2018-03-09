@@ -17,9 +17,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
   "dependencies": {
+    "antd-mobile": "^2.1.6",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "component-font-awesome": "0.0.4",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "isomorphic-fetch": "^2.2.1",
@@ -32,11 +39,6 @@
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.5.3",
     "webpack-isomorphic-tools": "^3.0.5"
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
   },
   "devDependencies": {
     "autoprefixer": "^8.0.0",

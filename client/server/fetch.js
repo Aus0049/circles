@@ -5,7 +5,7 @@ import 'isomorphic-fetch';
 
 import { createStore } from "redux";
 
-import reducer from "../src/reducers";
+import reducer from "../src/store/reducers";
 
 let host = process.argv[2];
 

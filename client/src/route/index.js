@@ -17,7 +17,7 @@ export default class Routes extends React.Component {
                 <Switch>
                     <Route exact path="/" render={() => <Redirect to="/home" />} />
                     <Route path="/home" component={Home} />
-                    <Route path="/about" component={About} />
+                    {/*<Route path="/about" component={About} />*/}
                     <Route component={NotFound} />
                 </Switch>
             </Layout>

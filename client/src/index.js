@@ -8,7 +8,7 @@ import reduxLogger from 'redux-logger'
 import {createStore, compose, applyMiddleware, combineReducers} from "redux"
 import { BrowserRouter as Router, } from "react-router-dom"
 import {Provider} from "react-redux"
-import reducer from "./reducers/"
+import reducer from "./store/reducers/"
 import Routes from "./route"
 import '../public/style/index.scss';
 
@@ -22,6 +22,9 @@ const store = createStore(
         applyMiddleware(...middleware),
     )
 );
+
+// 方便调试
+window.__state__ = store.getState();
 
 store.subscribe(() => {
     console.log('store subscribe');
