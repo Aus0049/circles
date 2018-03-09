@@ -32,16 +32,13 @@ app.use(signInCheck);
 
 // 配置数据库
 import './config/db_config';
-// require('./config/db_config');
 
 // 配置路由
-// const routePrefix = '/api';
-// app.use(`${routePrefix}/users`, users);
-// app.use(`${routePrefix}/say`, says);
+import user from './route/user';
+const routePrefix = '/api';
+app.use(`${routePrefix}/users`, user);
 
-import loggerConfig from './config/logger_config';
-
-const logger = loggerConfig.getLogger('default');
+import logger from './common/logger';
 
 app.listen(config.server_port, (err)=>{
    if(err){

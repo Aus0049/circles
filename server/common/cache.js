@@ -3,9 +3,7 @@
  */
 //实现缓存的 存取 功能 供调用
 import client from '../config/redis_config';
-import loggerConfig from '../config/logger_config';
-
-const logger = loggerConfig.getLogger('redis');
+import {redisLooger} from '../common/logger';
 
 const get = (key) => {
     return new Promise(function (resolve, reject) {
@@ -19,7 +17,7 @@ const get = (key) => {
 
             const duration = (new Date() - startTime);
 
-            logger.info('Cache', 'get', key, (duration + 'ms'));
+            redisLooger.info('Cache', 'get', key, (duration + 'ms'));
 
             resolve(data);
         });
@@ -39,7 +37,7 @@ const set = (key, value, time) => {
                 if (!data) return resolve();
 
                 const duration = (new Date() - startTime);
-                logger.info('Cache', 'set', key, (duration + 'ms'));
+                redisLooger.info('Cache', 'set', key, (duration + 'ms'));
 
                 resolve(data);
             });
@@ -49,7 +47,7 @@ const set = (key, value, time) => {
                 if (!data) return resolve();
 
                 const duration = (new Date() - startTime);
-                logger.info('Cache', 'set', key, (duration + 'ms'), 'timeout', (time + 's'));
+                redisLooger.info('Cache', 'set', key, (duration + 'ms'), 'timeout', (time + 's'));
 
                 resolve(data);
             });
@@ -66,7 +64,7 @@ const del = (key) => {
             if (err) return reject(err);
 
             const duration = (new Date() - startTime);
-            logger.info('Cache', 'del', key, (duration + 'ms'));
+            redisLooger.info('Cache', 'del', key, (duration + 'ms'));
 
             resolve();
         });

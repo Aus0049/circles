@@ -3,9 +3,7 @@
  */
 import config from './index';
 import Redis from 'ioredis';
-import loggerConfig from './logger_config';
-
-const logger = loggerConfig.getLogger('redis');
+import {redisLogger} from '../common/logger';
 
 const client = new Redis({
     port: config.redis_port,
@@ -15,13 +13,13 @@ const client = new Redis({
 });
 
 client.on('ready',function() {
-    logger.info('Redis链接成功！😁');
+    redisLogger.info('Redis链接成功！😁');
 });
 
 client.on('error', function (err) {
     if (err) {
-        logger.error('Redis链接失败！😢');
-        logger.error(err);
+        redisLogger.error('Redis链接失败！😢');
+        redisLogger.error(err);
         process.exit(1);
     }
 });

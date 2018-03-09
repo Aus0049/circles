@@ -3,17 +3,15 @@
  */
 import config from './index';
 import mongoose from 'mongoose';
-import loggerConfig from '../config/logger_config';
-
-const logger = loggerConfig.getLogger('mongo');
+import {mongoLogger} from '../common/logger';
 
 mongoose.connect(config.db, {poolSize: 20})
     .then(()=>{
-        logger.info('数据库连接成功！🍺');
+        mongoLogger.info('数据库连接成功！🍺');
     })
     .catch((err)=>{
-        logger.error('数据库连接失败！😢');
-        logger.error(err);
+        mongoLogger.error('数据库连接失败！😢');
+        mongoLogger.error(err);
     });
 
 // require('../models');

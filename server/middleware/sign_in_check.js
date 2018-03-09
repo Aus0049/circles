@@ -2,19 +2,18 @@
  * Created by Aus on 2018/3/9.
  */
 import Redis from '../common/cache';
-import loggerConfig from '../config/logger_config';
-
-const logger = loggerConfig.getLogger('route');
+import {routeLogger} from '../common/logger';
 
 // 检查登录状态
 export default function (req, res, next) {
     const urlWhiteList = [
+        '/api/users/get-user-sign-in-status',
         '/api/users/sign-in',
         '/api/users/sign-up'
     ];
     const url = req.originalUrl;
-    logger.info('登录检查');
-    logger.info(url);
+    routeLogger.info('登录检查');
+    routeLogger.info(url);
 
     // 不在白名单里
     if(urlWhiteList.indexOf(url) === -1){
@@ -23,19 +22,19 @@ export default function (req, res, next) {
             // 根据sid 查找redis
             Redis.get(req.cookies.RRIDSID)
                 .then((cache)=>{
-                    logger.info('cache');
-                    logger.info(cache);
+                    routeLogger.info('cache');
+                    routeLogger.info(cache);
 
                     if(cache){
                         // 更新redis时间
                         Redis.set(req.cookies.RRIDSID, cache, 60*60*24*1000);
 
-                        logger.info('已登录');
+                        routeLogger.info('已登录');
                         next();
                         return;
                     }
 
-                    logger.info('没有redis');
+                    routeLogger.info('没有redis');
                     // 没有登录
                     res.send({
                         status: false,
@@ -47,7 +46,7 @@ export default function (req, res, next) {
             return;
         }
 
-        logger.info('没有cookie');
+        routeLogger.info('没有cookie');
         // 没有登录
         res.send({
             status: false,
