@@ -3,7 +3,7 @@
  */
 import {combineReducers} from "redux";
 
-import layout from './layout';
+import layout from './layout/index';
 
 const reducer = combineReducers({
     layout

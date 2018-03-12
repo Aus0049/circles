@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {actionCreator} from '../store/actions/layout';
+import {actionCreator} from '../store/actions/layout/index';
 import layoutHOC from './layoutHOC';
 
 // 拦截器

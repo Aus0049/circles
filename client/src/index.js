@@ -11,7 +11,9 @@ import {Provider} from "react-redux"
 import axios from 'axios';
 import reducer from "./store/reducers/"
 import Routes from "./route"
+
 import '../public/style/index.scss';
+import 'font-awesome/css/font-awesome.css';
 
 // createStore
 const middleware = [thunk, reduxLogger];

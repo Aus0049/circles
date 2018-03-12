@@ -38,6 +38,14 @@ const webpackConfig = {
                 ]
             },
             {
+                test: /\.css$/,
+                use: [
+                    {loader: 'style-loader'},
+                    {loader: 'css-loader'},
+                    {loader: 'postcss-loader'}
+                ]
+            },
+            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",

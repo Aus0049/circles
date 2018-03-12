@@ -11,8 +11,8 @@ router.get('/get-user-sign-in-status', User.getUserSignInStatus);
 // // 注册
 // router.post('/sign-up', Users.signUpUser);
 //
-// // 登录
-// router.post('/sign-in', Users.signInUser);
+// 登录
+router.post('/sign-in', User.signInUser);
 //
 // // 登出
 // router.post('/sign-in', Users.signOutUser);

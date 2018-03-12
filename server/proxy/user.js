@@ -57,42 +57,42 @@ function getUserSignInStatus(req, res) {
 //     }
 // }
 //
-// async function signInUser (req, res) {
-//     try {
-//         const {username, password} = req.body;
-//
-//         logger.info('登录开始');
-//
-//         // 密码加密
-//         const sha1Password = Secret.stringEncryptSha1(password);
-//
-//         const user = await Users.findAsync({username: username, password: sha1Password});
-//
-//         if(user && user.length === 0){
-//             logger.info('登录失败 用户名密码不匹配');
-//             throw new Error('用户名密码不匹配');
-//         }
-//
-//         // 登陆成功
-//         logger.info('登录成功');
-//         logger.info('写入cookie redis登录状态');
-//
-//         // 写redis 过期时间一天
-//         const [sessionId, userInfo] = setRedis(user[0], 60*60*24);
-//
-//         // 将sessionId保存到cookie中
-//         res.cookie('RRIDSID', sessionId, { expires: new Date(Date.now() + 60*60*24*1000), httpOnly: true });
-//
-//         logger.info('写入redis登录状态结束');
-//
-//         logger.info('登录成功');
-//         res.send(createResultObj(true, '登录成功！', userInfo));
-//     } catch (err) {
-//         logger.info('登录');
-//         logger.info(err);
-//         res.send(createResultObj(false, err.message));
-//     }
-// }
+async function signInUser (req, res) {
+    try {
+        const {username, password} = req.body;
+
+        proxyLogger.info('登录开始');
+
+        // 密码加密
+        const sha1Password = Secret.stringEncryptSha1(password);
+
+        const user = await Users.findAsync({username: username, password: sha1Password});
+
+        if(user && user.length === 0){
+            proxyLogger.info('登录失败 用户名密码不匹配');
+            throw new Error('用户名密码不匹配');
+        }
+
+        // 登陆成功
+        proxyLogger.info('登录成功');
+        proxyLogger.info('写入cookie redis登录状态');
+
+        // 写redis 过期时间一天
+        const [sessionId, userInfo] = setRedis(user[0], 60*60*24);
+
+        // 将sessionId保存到cookie中
+        res.cookie('RRIDSID', sessionId, { expires: new Date(Date.now() + 60*60*24*1000), httpOnly: true });
+
+        proxyLogger.info('写入redis登录状态结束');
+
+        proxyLogger.info('登录成功');
+        res.send(createResultObj(true, '登录成功！', userInfo));
+    } catch (err) {
+        proxyLogger.info('登录');
+        proxyLogger.info(err);
+        res.send(createResultObj(false, err.message));
+    }
+}
 //
 // // 登出
 // async function signOutUser (req, res) {
@@ -119,23 +119,23 @@ const createResultObj = (status = true, message = '', data = null) => ({
     message: message,
     data: data,
 });
-//
-// function setRedis(user, time) {
-//     const sessionId = Secret.stringEncryptSha1(user._id.toString());
-//     const userInfo = {
-//         userId: user._id,
-//         username: user.username,
-//         phone: user.phone
-//     };
-//
-//     Redis.set(sessionId, userInfo, time);
-//
-//     return [sessionId, userInfo];
-// }
+
+function setRedis(user, time) {
+    const sessionId = Secret.stringEncryptSha1(user._id.toString());
+    const userInfo = {
+        userId: user._id,
+        username: user.username,
+        phone: user.phone
+    };
+
+    Redis.set(sessionId, userInfo, time);
+
+    return [sessionId, userInfo];
+}
 
 export default {
-    getUserSignInStatus
+    getUserSignInStatus,
     // signUpUser,
-    // signInUser,
+    signInUser,
     // signOutUser
 }

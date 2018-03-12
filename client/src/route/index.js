@@ -6,7 +6,8 @@ import {Route, Switch, Redirect} from "react-router-dom";
 import Layout from '../layout';
 import Home from '../containers/Home';
 import About from '../containers/About';
-import NotFound from '../containers/NotFound';
+import SignIn from '../containers/site/SignIn';
+import NotFound from '../containers/site/NotFound';
 import Header from '../components/header';
 
 export default class Routes extends React.Component {
@@ -17,6 +18,7 @@ export default class Routes extends React.Component {
                 <Switch>
                     <Route exact path="/" render={() => <Redirect to="/home" />} />
                     <Route path="/home" component={Home} />
+                    <Route path="/sign-in" component={SignIn} />
                     {/*<Route path="/about" component={About} />*/}
                     <Route component={NotFound} />
                 </Switch>

@@ -2,7 +2,7 @@
  * Created by Aus on 2018/3/12.
  */
 import React, { Component } from 'react';
-import {actionCreator} from '../store/actions/layout';
+import {actionCreator} from '../store/actions/layout/index';
 
 // layout 业务逻辑剥离 渲染劫持
 function layoutHOC(Layout) {
