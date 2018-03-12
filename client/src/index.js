@@ -40,6 +40,7 @@ axios.interceptors.response.use((res) => {
     // 无登录状态统一拦截
     if(result.code === 201){
         window.location.href = '/sign-in';
+        console.log(1111);
     }
 
     return Promise.resolve(result);

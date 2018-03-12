@@ -4,6 +4,7 @@
 import axios from 'axios';
 
 const LAYOUT_UPDATE_USER_INFO = 'LAYOUT_UPDATE_USER_INFO';
+const LAYOUT_UPDATE_LOADING = 'LAYOUT_UPDATE_LOADING';
 
 export const actionsTypes = {
     LAYOUT_UPDATE_USER_INFO
@@ -30,6 +31,12 @@ const updateUserInfo = (data) => ({
     payLoad: data,
 });
 
+const updateLoading = (data) => ({
+    type: LAYOUT_UPDATE_LOADING,
+    payLoad: data,
+});
+
 export const actionCreator = {
-    fetchUserInfo
+    fetchUserInfo,
+    updateLoading
 };

@@ -4,6 +4,7 @@
 import {actionsTypes} from "../actions/layout";
 
 const layoutInitState = {
+    loading: false,
     username: '',
     gender: '',
     age: ''
