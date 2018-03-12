@@ -25,6 +25,9 @@ const config = {
 
     // 一些变量
     env : process.env.NODE_ENV || 'development',
+
+    server_address: 'localhost',
+    server_port: 9000
 };
 
 config.globals = {
@@ -34,5 +37,6 @@ config.globals = {
     'NODE_ENV': config.env,
         '__DEV__': config.env === 'development',
         '__PROD__': config.env === 'production'
-}
+};
+
 module.exports = config;

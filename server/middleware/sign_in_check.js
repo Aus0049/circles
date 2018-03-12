@@ -7,7 +7,6 @@ import {routeLogger} from '../common/logger';
 // 检查登录状态
 export default function (req, res, next) {
     const urlWhiteList = [
-        '/api/users/get-user-sign-in-status',
         '/api/users/sign-in',
         '/api/users/sign-up'
     ];

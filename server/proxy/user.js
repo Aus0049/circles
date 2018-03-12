@@ -10,7 +10,7 @@ import Secret from '../common/secret';
  * 获取用户信息
  */
 function getUserSignInStatus(req, res) {
-    res.send(createResultObj(true, 'ok'));
+    //
 }
 
 // async function signUpUser(req, res) {
