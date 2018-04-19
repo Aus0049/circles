@@ -4,7 +4,9 @@
 import {actionsTypes} from "../../actions/layout/index";
 
 const layoutInitState = {
+    // system
     loading: false,
+    // userInfo
     username: '',
     phone: null,
     gender: '',

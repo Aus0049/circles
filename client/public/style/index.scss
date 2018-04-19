@@ -14,6 +14,11 @@ body {
 
 .layout-container {
   margin-top: 45px;
+
+  .content-container {
+    width: $contentWidth;
+    margin: 0 auto;
+  }
 }
 
 .home-container {

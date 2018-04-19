@@ -1,0 +1,11 @@
+@import '../../../public/style/base';
+
+// footer
+.footer-container {
+  .footer-box {
+    width: $contentWidth;
+    margin: 0 auto;
+    text-align: center;
+    color: #ccc;
+  }
+}
