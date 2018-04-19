@@ -17,19 +17,26 @@
   font-size: 18px;
   line-height: 45px;
 
-  .header-left {
-    flex: 1;
-    text-align: left;
-
+  .header-box {
+    width: 1100px;
+    margin: 0 auto;
   }
 
-  .header-title {
-    flex: 1;
-    text-align: center;
+  .logo {
+    display: inline-block;
+    margin-right: 20px;
   }
 
-  .header-right {
-    flex: 1;
-    text-align: right;
+  .link-list {
+    display: inline-block;
+
+    .item {
+      display: inline-block;
+
+      .icon {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
   }
 }
