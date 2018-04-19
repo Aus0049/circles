@@ -3,7 +3,6 @@
  */
 import React from 'react'
 import Icon from 'component-font-awesome'
-import {Popover} from 'antd-mobile'
 // import {actionCreators} from '../../../containers/site/store/actions'
 import {withRouter} from "react-router-dom";
 import './header.scss';
@@ -11,7 +10,7 @@ import './header.scss';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-const Item = Popover.Item;
+// const Item = Popover.Item;
 
 class Header extends React.Component {
     constructor(props) {
@@ -37,10 +36,10 @@ class Header extends React.Component {
         //         <Item key="signUp" value="signUp" icon={<Icon type="user-plus"/>} >注册</Item>
         //     );
         // }
-        overlayDOM.push(
-            <Item key="signOut" value="signOut" icon={<Icon type="sign-out"/>} >注销</Item>,
-            <Item key="add" value="add" icon={<Icon type="plus"/>} >发朋友圈</Item>
-        );
+        // overlayDOM.push(
+        //     <Item key="signOut" value="signOut" icon={<Icon type="sign-out"/>} >注销</Item>,
+        //     <Item key="add" value="add" icon={<Icon type="plus"/>} >发朋友圈</Item>
+        // );
 
         return overlayDOM;
     }
@@ -55,17 +54,17 @@ class Header extends React.Component {
                 </div>
                 <div className="header-title">朋友圈</div>
                 <div className="header-right">
-                    <Popover
-                        mask
-                        visible={isPopoverShow}
-                        overlay={overlayDOM}
-                        // onVisibleChange={this.handleVisibleChange}
-                        // onSelect={this.handleSelect}
-                    >
-                        <div>
-                            <Icon type="ellipsis-h" />
-                        </div>
-                    </Popover>
+                    {/*<Popover*/}
+                        {/*mask*/}
+                        {/*visible={isPopoverShow}*/}
+                        {/*overlay={overlayDOM}*/}
+                        {/*// onVisibleChange={this.handleVisibleChange}*/}
+                        {/*// onSelect={this.handleSelect}*/}
+                    {/*>*/}
+                        {/*<div>*/}
+                            {/*<Icon type="ellipsis-h" />*/}
+                        {/*</div>*/}
+                    {/*</Popover>*/}
                 </div>
             </div>
         );
