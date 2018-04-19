@@ -8,7 +8,7 @@ import reduxLogger from 'redux-logger'
 import {createStore, compose, applyMiddleware, combineReducers} from "redux"
 import { BrowserRouter as Router, } from "react-router-dom"
 import {Provider} from "react-redux"
-import axios from 'axios';
+
 import reducer from "./store/reducers/"
 import Routes from "./route"
 
@@ -26,31 +26,8 @@ const store = createStore(
     )
 );
 
-// 方便调试
+// 方便调试 留个后门
 window.__state__ = store.getState();
-
-store.subscribe(() => {
-    console.log('store subscribe');
-    console.log(store.getState());
-});
-
-// axios response拦截器
-axios.interceptors.response.use((res) => {
-    // 拦截response
-    const result = res.data;
-
-    // 无登录状态统一拦截
-    if(result.code === 201){
-        window.location.href = '/sign-in';
-    }
-
-    return Promise.resolve(result);
-}, (error) => {
-    // 拦截报错请求
-    const data = error.response.data;
-
-    return Promise.reject(data);
-});
 
 // 开发环境下 开启开发工具调试
 if (__DEV__) {
@@ -59,6 +36,8 @@ if (__DEV__) {
     }
 }
 
+// 配置抽离
+require('./config/axios');
 
 // 处理客户端渲染和服务端渲染切换
 const currentRender = module.hot ? render : hydrate ;
