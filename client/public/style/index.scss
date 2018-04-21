@@ -3,7 +3,7 @@
 @import 'base';
 
 // 基本样式
-p, ul, li {
+body, p, ul, li {
   margin: 0;
   padding: 0;
 }
@@ -12,7 +12,7 @@ body {
   font-family: "PingFang SC";
 }
 
-.layout-container {
+.single-column-layout-container {
   margin-top: 45px;
 
   .content-container {
