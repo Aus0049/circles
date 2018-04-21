@@ -9,12 +9,13 @@ import Home from '../containers/Home';
 import NotFound from '../containers/site/NotFound';
 import AppContainer from '../layout/AppContainer';
 import singleColumnLayoutHOC from '../layout/singleColumnLayoutHOC';
+import {actionCreator as layoutActionCreators} from '../store/actions/layout';
 
 // 路由json化
 const routerConfig = [
     {
         path: '/home',
-        component: dynamicWrapper(['layout'], singleColumnLayoutHOC, Home)
+        component: dynamicWrapper(['layout'], [layoutActionCreators], singleColumnLayoutHOC, Home)
     }
 ];
 

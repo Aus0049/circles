@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 // 动态加载路由
-export const dynamicWrapper = (models, layout, component) => {
+export const dynamicWrapper = (models, actionCreators, layout, component) => {
 
     const mapStateToProps = (state) => {
         const result = {};
@@ -23,8 +23,8 @@ export const dynamicWrapper = (models, layout, component) => {
     const mapDispatchToProps = (dispatch) => {
         let result = {};
 
-        models.forEach((item)=>{
-            result = Object.assign(result, {...bindActionCreators(require(`../store/actions/${item}/index`), dispatch)})
+        actionCreators.forEach((item)=>{
+            result = Object.assign(result, {...bindActionCreators(item, dispatch)})
         });
 
         return result;

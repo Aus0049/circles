@@ -10,6 +10,7 @@ body, p, ul, li {
 
 body {
   font-family: "PingFang SC";
+  background: #f6f6f6;
 }
 
 .single-column-layout-container {
@@ -21,7 +22,37 @@ body {
   }
 }
 
+// 首页
 .home-container {
-  background: #fff;
+  display: flex;
+  padding-top: 20px;
+
+  .user-container {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff;
+    overflow: hidden;
+
+    .user-head {
+      display: block;
+      margin-right: 10px;
+      width: 100px;
+      height: 100px;
+      float: left;
+      background: #ccc;
+    }
+
+    .user-info {
+      float: left;
+
+      .username {
+        font-size: 16px;
+        line-height: 25px;
+        color: #ccc;
+      }
+    }
+  }
 }
 
