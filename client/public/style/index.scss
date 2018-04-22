@@ -8,6 +8,10 @@ body, p, ul, li {
   padding: 0;
 }
 
+ul {
+  list-style: none;
+}
+
 body {
   font-family: "PingFang SC";
   background: #f6f6f6;
@@ -27,39 +31,87 @@ body {
   display: flex;
   padding-top: 20px;
 
-  .user-container {
-    box-sizing: border-box;
-    width: 300px;
-    margin-right: 20px;
-    overflow: hidden;
+  .left-container {
+    .user-container {
+      box-sizing: border-box;
+      width: 300px;
+      margin-right: 20px;
+      overflow: hidden;
 
-    .user-head {
-      display: block;
-      margin-right: 10px;
-      width: 100px;
-      height: 100px;
-      float: left;
-      background: #ccc;
-    }
+      .user-head {
+        display: block;
+        margin-right: 10px;
+        width: 100px;
+        height: 100px;
+        float: left;
+        background: $bkgGray;
+      }
 
-    .user-info {
-      float: left;
+      .user-info {
+        float: left;
 
-      .username {
-        font-size: 16px;
-        line-height: 25px;
-        color: #ccc;
+        .username {
+          font-size: 16px;
+          line-height: 25px;
+          color: $bkgGray;
+        }
       }
     }
   }
 
-  .feed-container {
+  .right-container {
     flex: 1;
 
     .feed-list {
       .article-item {
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        // 作者
         .author-box {
+          margin-bottom: 10px;
 
+          .author-head {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            background: $bkgGray;
+          }
+
+          .author-name {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 16px;
+            color: $textTitle;
+            line-height: 24px;
+            vertical-align: top;
+          }
+
+          .author-bio {
+            display: inline-block;
+            font-size: 16px;
+            color: $textSubTitle;
+            line-height: 24px;
+            vertical-align: top;
+          }
+        }
+        // 内容
+        .content {
+          color: $textContent;
+          line-height: 1.67;
+        }
+        // 操作
+        .article-options {
+          display: flex;
+          margin-top: 10px;
+          border-top: 1px solid #ebebeb;
+          
+          .option {
+            flex: 1;
+            padding-top: 10px;
+            text-align: center;
+            color: $textOptions;
+          }
         }
       }
     }
