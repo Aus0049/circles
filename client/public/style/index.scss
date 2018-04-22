@@ -30,9 +30,7 @@ body {
   .user-container {
     box-sizing: border-box;
     width: 300px;
-    padding: 10px;
-    border-radius: 5px;
-    background: #fff;
+    margin-right: 20px;
     overflow: hidden;
 
     .user-head {
@@ -51,6 +49,18 @@ body {
         font-size: 16px;
         line-height: 25px;
         color: #ccc;
+      }
+    }
+  }
+
+  .feed-container {
+    flex: 1;
+
+    .feed-list {
+      .article-item {
+        .author-box {
+
+        }
       }
     }
   }
