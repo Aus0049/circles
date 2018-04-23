@@ -2,7 +2,7 @@
  * Created by Aus on 2018/2/28.
  */
 import React, { Component } from 'react';
-import Icon from 'component-font-awesome';
+import Panel from '../components/articlePanel/';
 
 export default class Home extends Component {
     render() {
@@ -23,36 +23,7 @@ export default class Home extends Component {
 
                 <div className="right-container">
                     <ul className="feed-list">
-                        <li className="panel article-item">
-                            <div className="author-box">
-                                <img src="" alt="" className="author-head" />
-                                <p className="author-name">Aus</p>
-                                <p className="author-bio">This is bio</p>
-                            </div>
-                            <div className="content">
-                                This is content.
-                            </div>
-                            <ul className="article-options">
-                                <li className="option"><Icon type="comments" /> 评论</li>
-                                <li className="option"><Icon type="thumbs-up" /> 点赞</li>
-                                <li className="option"><Icon type="external-link" /> 转发</li>
-                            </ul>
-                        </li>
-                        <li className="panel article-item">
-                            <div className="author-box">
-                                <img src="" alt="" className="author-head" />
-                                <p className="author-name">Aus</p>
-                                <p className="author-bio">This is bio</p>
-                            </div>
-                            <div className="content">
-                                This is content.
-                            </div>
-                            <ul className="article-options">
-                                <li className="option"><Icon type="comments" /> 评论</li>
-                                <li className="option"><Icon type="thumbs-up" /> 点赞</li>
-                                <li className="option"><Icon type="external-link" /> 转发</li>
-                            </ul>
-                        </li>
+                        <Panel />
                     </ul>
                 </div>
             </div>
