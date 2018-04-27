@@ -14,6 +14,7 @@ import Routes from "./route"
 
 import '../public/style/index.scss';
 import 'font-awesome/css/font-awesome.css';
+import 'antd/dist/antd.min.css';
 
 // createStore
 const middleware = [thunk, reduxLogger];

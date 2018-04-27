@@ -19,12 +19,22 @@ $textFooter: #ccc;
 // 内容宽度
 $contentWidth: 1000px;
 
+// 字号大小
+$fontTitle: 24px;
+$fontSubTitle: 18px;
+
 // 公共样式类
 .panel {
   padding: 10px;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 10px 2px #cccc;
+}
+
+.delayering-panel {
+  padding: 20px;
+  background: #fff;
+  border-radius: 2px;
 }
 
 

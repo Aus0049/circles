@@ -3,7 +3,7 @@
 @import 'base';
 
 // 基本样式
-body, p, ul, li {
+body, p, ul, li, h1, h2 {
   margin: 0;
   padding: 0;
 }
@@ -92,6 +92,25 @@ body {
     .feed-list {
 
     }
+  }
+}
+
+// 注册
+.sign-up-container {
+  width: $contentWidth/2;
+  text-align: center;
+  
+  .title {
+    margin-bottom: 5px;
+    color: $viColor;
+    font-size: $fontTitle;
+    font-weight: normal;
+  }
+
+  .sub-title {
+    color: $textSubTitle;
+    font-size: $fontSubTitle;
+    font-weight: normal;
   }
 }
 
