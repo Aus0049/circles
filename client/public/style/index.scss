@@ -26,6 +26,33 @@ body {
   }
 }
 
+.sign-layout-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: $darkGray;
+  background-image: url("../../public/images/sign-layout-background.jpg");
+  background-size: cover;
+
+  .content-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $textFooter;
+  }
+}
+
 // 首页
 .home-container {
   display: flex;

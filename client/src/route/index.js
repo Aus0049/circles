@@ -6,8 +6,10 @@ import {Route, Switch, Redirect} from "react-router-dom";
 
 import {dynamicWrapper, RouteWithSubRoutes} from "./helper";
 import Home from '../containers/Home';
+import SignUp from '../containers/site/SignUp';
 import NotFound from '../containers/site/NotFound';
 import AppContainer from '../layout/AppContainer';
+import signLayoutHOC from '../layout/signLayoutHOC';
 import singleColumnLayoutHOC from '../layout/singleColumnLayoutHOC';
 import {actionCreator as layoutActionCreators} from '../store/actions/layout';
 
@@ -16,6 +18,10 @@ const routerConfig = [
     {
         path: '/home',
         component: dynamicWrapper(['layout'], [layoutActionCreators], singleColumnLayoutHOC, Home)
+    },
+    {
+        path: '/sign-up',
+        component: dynamicWrapper(['layout'], [layoutActionCreators], signLayoutHOC, SignUp)
     }
 ];
 
