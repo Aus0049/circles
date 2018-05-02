@@ -37,7 +37,7 @@ body {
 
   .content-container {
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -98,13 +98,13 @@ body {
 
 // 注册
 .sign-up-container {
+  box-sizing: content-box;
   width: $contentWidth/2;
-  text-align: center;
   
   .title {
     margin-bottom: 5px;
     color: $viColor;
-    font-size: $fontTitle;
+    font-size: $fontSuper;
     font-weight: normal;
   }
 
@@ -113,17 +113,14 @@ body {
     font-size: $fontSubTitle;
     font-weight: normal;
   }
+
+  .submit {
+    margin-right: 20px;
+  }
 }
 
 // 标准表单
 .standard-form {
-  // 验证报错
-  .ant-form-item-control {
-    &.has-error {
-      .ant-form-explain {
-        text-align: left;
-      }
-    }
-  }
+
 }
 
