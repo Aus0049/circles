@@ -26,6 +26,7 @@ body {
   }
 }
 
+// 注册登录布局
 .sign-layout-container {
   position: relative;
   width: 100%;
@@ -111,6 +112,18 @@ body {
     color: $textSubTitle;
     font-size: $fontSubTitle;
     font-weight: normal;
+  }
+}
+
+// 标准表单
+.standard-form {
+  // 验证报错
+  .ant-form-item-control {
+    &.has-error {
+      .ant-form-explain {
+        text-align: left;
+      }
+    }
   }
 }
 
