@@ -19,8 +19,10 @@ import './config/db_config';
 
 // 配置路由
 import user from './route/user';
+import support from './route/support';
 const routePrefix = '/api';
 app.use(`${routePrefix}/users`, user);
+app.use(`${routePrefix}/support`, support);
 
 import logger from './common/logger';
 

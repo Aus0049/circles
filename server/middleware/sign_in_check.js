@@ -6,10 +6,14 @@ import {routeLogger} from '../common/logger';
 
 // 检查登录状态
 export default function (req, res, next) {
+    // 白名单里的路径不做登录状态检查
+
     const urlWhiteList = [
         '/api/users/sign-in',
-        '/api/users/sign-up'
+        '/api/users/sign-up',
+        '/api/support/send-sms-code'
     ];
+
     const url = req.originalUrl;
     routeLogger.info('登录检查');
     routeLogger.info(url);

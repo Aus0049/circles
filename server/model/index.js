@@ -5,6 +5,7 @@
 import mongoose from 'mongoose';
 import BPromise from 'bluebird';
 import './user';
+import './captcha';
 
 mongoose.Promise = BPromise;
 

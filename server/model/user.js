@@ -23,8 +23,8 @@ const UsersSchema = new Schema({
         required: true
     },
     slogan: {type: String},
-    headImage: {type: String},
-    createTime: {
+    head_image: {type: String},
+    create_time: {
         type: Date,
         default: Date.now()
     },
