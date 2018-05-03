@@ -33,7 +33,10 @@ function fetchUserInfo() {
 }
 
 // 注册
-function fetchSignUp (username, phone, password) {
+function encryptionPasswordAndSignUp (fetchData) {
+    // 密码加密
+
+
     return (dispatch, getState) => {
         return axios.post(`${apiRoutePrefix}/users/sign-up`, {
             username: username,
@@ -73,7 +76,7 @@ const updateLoading = (data) => ({
 
 export const actionCreator = {
     fetchUserInfo,
-    fetchSignUp,
+    encryptionPasswordAndSignUp,
     fetchSignIn,
     updatePersonalInfo,
     updateLoading,

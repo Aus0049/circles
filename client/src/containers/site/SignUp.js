@@ -25,8 +25,19 @@ class SignUp extends React.Component {
         });
 
         if(hasError) return;
+
         // 请求
-        console.log(this.props.form.getFieldsValue());
+        // 准备数据
+        const fetchData = {};
+        let {email, username, password, mobile} = this.props.form.getFieldsValue();
+
+        fetchData.email = email;
+        fetchData.username = username;
+        fetchData.password = password;
+        fetchData.mobile = mobile;
+
+        // 前端密码加密到底有没有意义？ 有总比没有强
+
     }
 
     getFormItem() {
