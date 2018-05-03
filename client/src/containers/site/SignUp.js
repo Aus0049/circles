@@ -13,8 +13,11 @@ class SignUp extends React.Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSendSMS = this.handleSendSMS.bind(this);
+        this.state = {
+            sendCaptchaLoading: false,
+            submitLoading: false
+        };
     }
-
     handleSubmit() {
         // 提交检查
         let hasError = false;
@@ -41,10 +44,27 @@ class SignUp extends React.Component {
 
     }
     handleSendSMS () {
+        // 发送验证码
+        // 1. 验证手机号
+        let hasError = false;
 
+        this.props.form.validateFields('mobile', {}, (err)=>{
+            if(err) hasError = true;
+        });
+
+        if(hasError) return;
+
+        // loading
+        this.setState({sendCaptchaLoading: true});
+        // 发送验证码
+        this.props.fetchCaptcha(this.props.form.getFieldValue('mobile'))
+            .then((result)=>{
+
+            });
     }
     getFormItem() {
         const {getFieldDecorator} = this.props.form;
+        const {sendCaptchaLoading} = this.state;
         const result = [];
         // 注册表单构成
 
@@ -53,7 +73,7 @@ class SignUp extends React.Component {
             <FormItem key="username">
                 {getFieldDecorator('username', {
                     rules: [
-                        {required: true, message: '密码不可为空！'},
+                        {required: true, message: '用户名不可为空！'},
                         {type: 'string', min: 2, max: 10, message: '用户名2-10个字符！'}
                     ],
                     validateTrigger: 'onBlur'
@@ -77,7 +97,12 @@ class SignUp extends React.Component {
                     ],
                     validateTrigger: 'onBlur'
                 })(
-                    <Input prefix={<Icon type="lock"/>} type="password" placeholder="请输入密码"/>
+                    <Input
+                        prefix={<Icon type="lock"/>}
+                        type="password"
+                        placeholder="请输入密码"
+                        size="large"
+                    />
                 )}
             </FormItem>
         );
@@ -93,7 +118,12 @@ class SignUp extends React.Component {
                     validateTrigger: 'onBlur',
                     validateFirst: true
                 })(
-                    <Input prefix={<Icon type="mobile"/>} type="mobile" placeholder="请输入手机号码"/>
+                    <Input
+                        prefix={<Icon type="mobile"/>}
+                        type="mobile"
+                        placeholder="请输入手机号码"
+                        size="large"
+                    />
                 )}
             </FormItem>
         );
@@ -110,13 +140,20 @@ class SignUp extends React.Component {
                         validateTrigger: 'onBlur',
                         validateFirst: true
                     })(
-                        <Input prefix={<Icon type="mobile"/>} type="mobile" placeholder="请输入手机号码"/>
+                        <Input
+                            prefix={<Icon type="mobile"/>}
+                            type="mobile"
+                            placeholder="请输入手机号码"
+                            size="large"
+                        />
                     )}
                 </Col>
                 <Col className="sms-box" span={10}>
                     <Button
                         className="send-sms"
                         type="primary"
+                        size="large"
+                        loading={sendCaptchaLoading}
                         onClick={this.handleSendSMS}
                     >
                         发送验证码

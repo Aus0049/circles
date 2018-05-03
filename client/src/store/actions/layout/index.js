@@ -47,6 +47,14 @@ function encryptionPasswordAndSignUp (fetchData) {
     }
 }
 
+// 发送验证码
+function fetchCaptcha(mobile) {
+    return (dispatch, getState) => {
+        return axios.post(`${apiRoutePrefix}/support/send-sms-code`, {mobile: mobile})
+            .catch(response => response.data)
+    }
+}
+
 // 登录
 function fetchSignIn (username, password) {
     return (dispatch, getState) => {
@@ -77,6 +85,8 @@ const updateLoading = (data) => ({
 export const actionCreator = {
     fetchUserInfo,
     encryptionPasswordAndSignUp,
+    fetchCaptcha,
+
     fetchSignIn,
     updatePersonalInfo,
     updateLoading,
