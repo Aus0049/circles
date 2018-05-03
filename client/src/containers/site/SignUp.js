@@ -4,7 +4,7 @@
 import React from 'react';
 import {Form, Input, Tooltip, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete} from 'antd';
 import Icon from 'component-font-awesome';
-import {verifyMobile} from '../../public/validate';
+import {verifyMobile, verifyTrue} from '../../public/validate';
 const FormItem = Form.Item;
 
 // 注册
@@ -16,12 +16,17 @@ class SignUp extends React.Component {
 
     handleSubmit() {
         // 提交检查
+        let hasError = false;
+
         this.props.form.validateFields((err) => {
             if (err) {
-                return false;
+                hasError = true;
             }
         });
+
+        if(hasError) return;
         // 请求
+        console.log(this.props.form.getFieldsValue());
     }
 
     getFormItem() {
@@ -94,8 +99,14 @@ class SignUp extends React.Component {
         // 6. protocol
         result.push(
             <FormItem key="protocol">
-                {getFieldDecorator('protocol')(
-                    <Checkbox>我同意<a>注册用户须知</a></Checkbox>
+                {getFieldDecorator('protocol', {
+                    valuePropName: 'checked',
+                    initialValue: true,
+                    rules: [
+                        {validator: verifyTrue, message: '请阅读《注册用户须知》！'},
+                    ],
+                })(
+                    <Checkbox>我同意<a>《注册用户须知》</a></Checkbox>
                 )}
             </FormItem>
         );
@@ -140,4 +151,13 @@ class SignUp extends React.Component {
     }
 }
 
+// export default Form.create({
+//     mapPropsToFields: (props)=>{
+//         return {
+//             protocol: Form.createFormField({
+//                 value: true
+//             })
+//         }
+//     }
+// })(SignUp);
 export default Form.create()(SignUp);

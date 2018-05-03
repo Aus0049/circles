@@ -11,3 +11,13 @@ export const verifyMobile = (rule, value, callback) => {
         callback();
     }
 };
+
+// 验证必选
+export const verifyTrue = (rule, value, callback) => {
+    if(!value === true){
+        // 错误
+        callback(new Error(rule.message));
+    } else {
+        callback();
+    }
+};
