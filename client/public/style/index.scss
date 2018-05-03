@@ -99,7 +99,7 @@ body {
 // 注册
 .sign-up-container {
   box-sizing: content-box;
-  width: $contentWidth/2;
+  width: 350px;
   
   .title {
     margin-bottom: 5px;
@@ -114,13 +114,38 @@ body {
     font-weight: normal;
   }
 
-  .submit {
-    margin-right: 20px;
+  .sms-box {
+    text-align: right;
+
+    .send-sms {
+      width: 130px;
+    }
+  }
+
+  .button-group {
+    display: flex;
+
+    .submit {
+      flex: 1;
+    }
+
+    .sign-in {
+      margin-left: 15px;
+      width: 130px;
+    }
   }
 }
 
 // 标准表单
 .standard-form {
+  // 行内提示
+  .form-item-tooltip-box {
+    padding: 0 10px;
+    text-align: center;
 
+    .icon {
+      font-size: $fontSubTitle;
+    }
+  }
 }
 

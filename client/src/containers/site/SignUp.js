@@ -12,6 +12,7 @@ class SignUp extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSendSMS = this.handleSendSMS.bind(this);
     }
 
     handleSubmit() {
@@ -39,28 +40,15 @@ class SignUp extends React.Component {
         // 前端密码加密到底有没有意义？ 有总比没有强
 
     }
+    handleSendSMS () {
 
+    }
     getFormItem() {
         const {getFieldDecorator} = this.props.form;
         const result = [];
         // 注册表单构成
 
-        // 1. email
-        result.push(
-            <FormItem key="email">
-                {getFieldDecorator('email', {
-                    rules: [
-                        {required: true, message: '邮箱不能为空!'},
-                        {type: 'email', message: '邮箱格式错误！'}
-                    ],
-                    validateTrigger: 'onBlur'
-                })(
-                    <Input prefix={<Icon type="envelope"/>} placeholder="请输入邮箱地址"/>
-                )}
-            </FormItem>
-        );
-
-        // 2. username
+        // 1. username
         result.push(
             <FormItem key="username">
                 {getFieldDecorator('username', {
@@ -70,12 +58,16 @@ class SignUp extends React.Component {
                     ],
                     validateTrigger: 'onBlur'
                 })(
-                    <Input prefix={<Icon type="user"/>} placeholder="请输入用户名"/>
+                    <Input
+                        prefix={<Icon type="user"/>}
+                        placeholder="请输入用户名"
+                        size="large"
+                    />
                 )}
             </FormItem>
         );
 
-        // 3. password
+        // 2. password
         result.push(
             <FormItem key="password">
                 {getFieldDecorator('password', {
@@ -90,7 +82,7 @@ class SignUp extends React.Component {
             </FormItem>
         );
 
-        // 4. mobile
+        // 3. mobile
         result.push(
             <FormItem key="mobile">
                 {getFieldDecorator('mobile', {
@@ -106,7 +98,33 @@ class SignUp extends React.Component {
             </FormItem>
         );
 
-        // 5. verification code 验证码接入 调研一下
+        // 5. captcha
+        result.push(
+            <FormItem key="captcha">
+                <Col span={14}>
+                    {getFieldDecorator('captcha', {
+                        rules: [
+                            {required: true, message: '验证码不可为空！'},
+                            {type: 'string', min: 6, max: 6, message: '验证码长度6位'}
+                        ],
+                        validateTrigger: 'onBlur',
+                        validateFirst: true
+                    })(
+                        <Input prefix={<Icon type="mobile"/>} type="mobile" placeholder="请输入手机号码"/>
+                    )}
+                </Col>
+                <Col className="sms-box" span={10}>
+                    <Button
+                        className="send-sms"
+                        type="primary"
+                        onClick={this.handleSendSMS}
+                    >
+                        发送验证码
+                    </Button>
+                </Col>
+            </FormItem>
+        );
+
         // 6. protocol
         result.push(
             <FormItem key="protocol">
@@ -114,7 +132,7 @@ class SignUp extends React.Component {
                     valuePropName: 'checked',
                     initialValue: true,
                     rules: [
-                        {validator: verifyTrue, message: '请阅读《注册用户须知》！'},
+                        {validator: verifyTrue, message: '请同意《注册用户须知》！'},
                     ],
                 })(
                     <Checkbox>我同意<a>《注册用户须知》</a></Checkbox>
@@ -137,7 +155,7 @@ class SignUp extends React.Component {
                     layout="horizontal"
                 >
                     {formItem}
-                    <FormItem>
+                    <div className="button-group">
                         <Button
                             className="submit"
                             type="primary"
@@ -154,7 +172,7 @@ class SignUp extends React.Component {
                         >
                             登录
                         </Button>
-                    </FormItem>
+                    </div>
                 </Form>
 
             </div>
