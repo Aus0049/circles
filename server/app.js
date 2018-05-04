@@ -21,6 +21,7 @@ import './config/db_config';
 import user from './route/user';
 import support from './route/support';
 const routePrefix = '/api';
+
 app.use(`${routePrefix}/users`, user);
 app.use(`${routePrefix}/support`, support);
 

@@ -24,6 +24,12 @@ log4js.configure({
             maxLogSize: 1024,
             backups: 3,
         },
+        server: {
+            type: 'file',
+            filename: path.join(config.log_dir, 'server', 'use.log'),
+            maxLogSize: 1024,
+            backups: 3,
+        },
         route: {
             type: 'file',
             filename: path.join(config.log_dir, 'route', 'request.log'),
@@ -35,7 +41,7 @@ log4js.configure({
     categories: {
         default: { appenders: ['default'], level: 'info' },
         database: { appenders: ['redis', 'mongo'], level: 'error'},
-        server: { appenders: ['user'], level: 'error' },
+        server: { appenders: ['user', 'sms'], level: 'error' },
         controller: { appenders: ['route'], level: 'info' }
     }
 });

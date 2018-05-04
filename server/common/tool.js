@@ -17,6 +17,14 @@ function formatDate (date, friendly) {
     return date.format('YYYY-MM-DD HH:mm');
 }
 
+// 标准的异步请求返回格式
+const createJSONResponseData = (status = true, message = '', data = null) => ({
+    status: status,
+    message: message,
+    data: data,
+});
+
 export default {
-    formatDate
+    formatDate,
+    createJSONResponseData
 }

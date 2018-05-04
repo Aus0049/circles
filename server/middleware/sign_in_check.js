@@ -11,7 +11,7 @@ export default function (req, res, next) {
     const urlWhiteList = [
         '/api/users/sign-in',
         '/api/users/sign-up',
-        '/api/support/send-sms-code'
+        '/api/support/send-sms-code-for-sign'
     ];
 
     const url = req.originalUrl;

@@ -12,3 +12,5 @@ export const mongoLogger = loggerConfig.getLogger('mongo');
 export const routeLogger = loggerConfig.getLogger('route');
 
 export const proxyLogger = loggerConfig.getLogger('proxy');
+
+export const serverLogger = loggerConfig.getLogger('server');

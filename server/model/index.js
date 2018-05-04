@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import BPromise from 'bluebird';
 import './user';
 import './captcha';
+import './count';
 
 mongoose.Promise = BPromise;
 
@@ -14,3 +15,5 @@ BPromise.promisifyAll(mongoose.Model.prototype);
 BPromise.promisifyAll(mongoose.Query.prototype);
 
 exports.Users = mongoose.model('Users');
+exports.Captchas = mongoose.model('Captchas');
+exports.Counts = mongoose.model('Counts');
