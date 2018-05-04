@@ -9,4 +9,8 @@ export const redisLogger = loggerConfig.getLogger('redis');
 
 export const routeLogger = loggerConfig.getLogger('route');
 
+export const countProxyLogger = loggerConfig.getLogger('count_proxy');
+
+export const captchaProxyLogger = loggerConfig.getLogger('captcha_proxy');
+
 export const smsServerLogger = loggerConfig.getLogger('sms_server');

@@ -17,16 +17,17 @@ function create4BitsCaptcha () {
 // 3. 多位数组字母验证码
 
 // 注册获取验证码
-function getSignUpCaptcha () {
+async function getSignUpCaptcha (req, res) {
     console.log('获取验证码');
     // 1.创建简单验证码
-    const captcha = create4BitsCaptcha();
-    console.log('captcha: ' + captcha);
-    Captcha.save(captcha);
+    const captchaCode = create4BitsCaptcha();
+    console.log('captcha: ' + captchaCode);
+    const captcha = await Captcha.save(captchaCode);
+    console.log('ok');
     // 2. 结果入库
 
-
     // 3. 交给验证码服务发送验证码
+    res.send('ok');
 }
 
 export default {
