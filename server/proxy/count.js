@@ -6,7 +6,7 @@ import {countProxyLogger} from '../common/logger';
 
 async function save (count) {
     countProxyLogger.info('存入count: ' + count);
-    return await Counts.saveAsync(count);
+    return await count.saveAsync();
 }
 
 async function update(conditions, count, options) {

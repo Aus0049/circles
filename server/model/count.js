@@ -16,6 +16,9 @@ const CountsSchema = new Schema({
     count: {
         type: Number,
         required: true
+    },
+    update_time: {
+        type: Date,
     }
 }, {versionKey: false});
 

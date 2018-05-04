@@ -19,13 +19,20 @@ const CaptchasSchema = new Schema({
     },
     is_used: {
         type: Boolean,
-        required: true,
+        default: true,
     },
     create_time: {
         type: Date,
         default: Date.now()
     },
-}, {versionKey: false});
+    update_time: {
+        type:Date,
+        default: Date.now()
+    }
+}, {
+    versionKey: false,
+    timestamps: { createdAt: 'create_time', updatedAt: 'update_time' }
+});
 
 CaptchasSchema.plugin(BaseModel);
 CaptchasSchema.index({_id: 1});

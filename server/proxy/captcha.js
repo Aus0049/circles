@@ -41,7 +41,7 @@ async function save (captcha) {
     newCaptcha.captcha_code = captcha;
 
     captchaProxyLogger.info('存入captcha：' + newCaptcha);
-    return await Captchas.saveAsync(newCaptcha);
+    return await newCaptcha.saveAsync();
     // 返回结果
 }
 
