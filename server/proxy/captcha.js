@@ -13,7 +13,7 @@ import Secret from '../common/secret';
  */
 async function save (captcha) {
     // 先去Counts表中查找最大id
-    const maxCount = Counts.findAsync({'collection_name': 'captcha'});
+    const maxCount = await Counts.findAsync({'collection_name': 'captcha'});
     console.log(maxCount);
     // 最大id作为新id存入
     // 返回结果

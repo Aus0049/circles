@@ -7,10 +7,6 @@ export default loggerConfig.getLogger('default');
 
 export const redisLogger = loggerConfig.getLogger('redis');
 
-export const mongoLogger = loggerConfig.getLogger('mongo');
-
 export const routeLogger = loggerConfig.getLogger('route');
 
-export const proxyLogger = loggerConfig.getLogger('proxy');
-
-export const serverLogger = loggerConfig.getLogger('server');
+export const smsServerLogger = loggerConfig.getLogger('sms_server');

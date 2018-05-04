@@ -5,44 +5,45 @@ import log4js from 'log4js';
 import path from 'path';
 import config from './index';
 
+// 日志配置分成两个维度：层级和模块
 log4js.configure({
     appenders: {
         default: { type: 'console'},
         redis: {
-            type: 'file',
+            type: 'DateFile',
             filename: path.join(config.log_dir, 'redis', 'redis.log'),
+            pattern: '-yyyy-MM-dd.log',
             alwaysIncludePattern: true
         },
-        mongo: {
+        proxy: {
             type: 'file',
-            filename: path.join(config.log_dir, 'mongo', 'mongo.log'),
-            alwaysIncludePattern: true
-        },
-        user: {
-            type: 'file',
-            filename: path.join(config.log_dir, 'proxy', 'user.log'),
+            filename: path.join(config.log_dir, 'proxy', 'proxy.log'),
             maxLogSize: 1024,
             backups: 3,
         },
         server: {
             type: 'file',
-            filename: path.join(config.log_dir, 'server', 'use.log'),
+            filename: path.join(config.log_dir, 'server', 'server.log'),
             maxLogSize: 1024,
             backups: 3,
         },
         route: {
-            type: 'file',
-            filename: path.join(config.log_dir, 'route', 'request.log'),
-            maxLogSize: 1024,
-            backups: 3,
+            type: 'DateFile',
+            filename: path.join(config.log_dir, 'route', 'route.log'),
+            pattern: '-yyyy-MM-dd.log',
+            alwaysIncludePattern: true
         }
     },
     replaceConsole: true,
     categories: {
         default: { appenders: ['default'], level: 'info' },
-        database: { appenders: ['redis', 'mongo'], level: 'error'},
-        server: { appenders: ['user', 'sms'], level: 'error' },
-        controller: { appenders: ['route'], level: 'info' }
+        redis: {appenders: ['redis'], level: 'info'},
+        route: {appenders: ['route'], level: 'info'},
+
+        captcha_proxy: {appenders: ['proxy'], level: 'info'},
+        count_proxy: {appenders: ['proxy'], level: 'info'},
+
+        sms_server: {appenders: ['server'], level: 'info'}
     }
 });
 

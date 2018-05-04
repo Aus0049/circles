@@ -1,7 +1,7 @@
 /**
  * Created by Aus on 2018/5/4.
  */
-import {serverLogger} from '../common/logger';
+import {smsServerLogger} from '../common/logger';
 import Captcha from '../proxy/captcha';
 // 只向外暴露流程 内部方法不暴露
 
@@ -18,7 +18,7 @@ function create4BitsCaptcha () {
 
 // 注册获取验证码
 function getSignUpCaptcha () {
-    serverLogger.logger('获取验证码');
+    console.log('获取验证码');
     // 1.创建简单验证码
     const captcha = create4BitsCaptcha();
     console.log('captcha: ' + captcha);
