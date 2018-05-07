@@ -10,7 +10,7 @@ import CountProxy from './count';
  * @param captcha
  * @return captchaId
  */
-async function save (captcha) {
+async function save (captcha, mobile) {
     // 先去Counts表中查找最大id
     let maxCount;
     let captchaItemArray = await Counts.findAsync({'collection_name': 'captcha'});
@@ -39,10 +39,11 @@ async function save (captcha) {
 
     newCaptcha.captcha_id = maxCount;
     newCaptcha.captcha_code = captcha;
+    newCaptcha.mobile = mobile;
 
     captchaProxyLogger.info('存入captcha：' + newCaptcha);
-    return await newCaptcha.saveAsync();
     // 返回结果
+    return await newCaptcha.saveAsync();
 }
 
 

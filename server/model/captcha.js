@@ -17,6 +17,10 @@ const CaptchasSchema = new Schema({
         type: Number,
         required: true,
     },
+    mobile: {
+        type: Number,
+        required: true,
+    },
     is_used: {
         type: Boolean,
         default: true,
