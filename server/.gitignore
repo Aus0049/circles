@@ -7,6 +7,9 @@
 # testing
 /coverage
 
+# personal
+/common/ali_sms.js
+
 # misc
 .DS_Store
 .env.local
