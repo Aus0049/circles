@@ -1,37 +1,31 @@
 /**
  * Created by Aus on 2018/3/9.
  */
-// 基本配置引入
-import express from 'express';
-import path from 'path';
-import config from './config';
-import middleware from './middleware/';
+const koa = require('koa');
+const config = require('./config/');
+const routers = require('./route/');
+const logger = require('./common/logger').default;
 
-const app = express();
+//创建koa服务器应用
+const app = new koa();
 
-// 配置静态目录 放在最上面
-app.use(express.static(path.join(__dirname, 'public')));
-// 配置中间件
-middleware(app);
+app.keys = ['circles_aus'];
 
-// 配置数据库
-import './config/db_config';
+// 1. 中间件配置
+require('./middleware/')(app);
 
-// 配置路由
-import user from './route/user';
-import support from './route/support';
-const routePrefix = '/api';
+// 2. 配置数据库
+require('./config/db_config');
 
-app.use(`${routePrefix}/users`, user);
-app.use(`${routePrefix}/support`, support);
+// 3. 配置路由
+app.use(routers);
 
-import logger from './common/logger';
+// 4. 监听端口
+app.listen(config.serverPort, function(err) {
+    if (err) {
+        logger.error('server start err: ' + err);
+    }
 
-app.listen(config.server_port, (err)=>{
-   if(err){
-       logger.error('server start err: ' + err);
-   }
-
-    logger.info('server running on port: ' + config.server_port);
+    logger.info('server running on port: ' + config.serverPort);
 });
 

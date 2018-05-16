@@ -36,7 +36,6 @@ function fetchUserInfo() {
 function encryptionPasswordAndSignUp (fetchData) {
     // 密码加密
 
-
     return (dispatch, getState) => {
         return axios.post(`${apiRoutePrefix}/users/sign-up`, {
             username: username,
@@ -50,7 +49,7 @@ function encryptionPasswordAndSignUp (fetchData) {
 // 发送验证码
 function fetchCaptcha(mobile) {
     return (dispatch, getState) => {
-        return axios.post(`${apiRoutePrefix}/support/send-sms-code`, {mobile: mobile})
+        return axios.post(`${apiRoutePrefix}/support/send-sms-code-for-sign`, {mobile: mobile})
             .catch(response => response.data)
     }
 }

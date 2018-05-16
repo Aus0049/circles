@@ -1,18 +1,13 @@
 /**
  * Created by Aus on 2018/3/9.
  */
-import config from './index';
-import Redis from 'ioredis';
-import loggerConfig from '../common/logger';
+const config = require('./index');
+const redis = require('redis');
+const loggerConfig = require('../common/logger').default;
 
-const client = new Redis({
-    port: config.redis_port,
-    host: config.redis_host,
-    db: config.redis_db,
-    password: config.redis_password
-});
+const client = redis.createClient(config.redisPort, config.redisHost);
 
-client.on('ready',function() {
+client.on('ready', function() {
     loggerConfig.info('Redis链接成功！😁');
 });
 
@@ -23,4 +18,4 @@ client.on('error', function (err) {
     }
 });
 
-export default client;
+module.exports = client;

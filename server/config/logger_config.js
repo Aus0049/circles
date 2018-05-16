@@ -1,9 +1,9 @@
 /**
  * Created by Aus on 2018/3/9.
  */
-import log4js from 'log4js';
-import path from 'path';
-import config from './index';
+const log4js = require('log4js');
+const path = require('path');
+const config = require('./index');
 
 // 日志配置分成两个维度：层级和模块
 log4js.configure({
@@ -11,25 +11,25 @@ log4js.configure({
         default: { type: 'console'},
         redis: {
             type: 'DateFile',
-            filename: path.join(config.log_dir, 'redis', 'redis.log'),
+            filename: path.join(config.logDir, 'redis', 'redis.log'),
             pattern: '-yyyy-MM-dd.log',
             alwaysIncludePattern: true
         },
         proxy: {
             type: 'file',
-            filename: path.join(config.log_dir, 'proxy', 'proxy.log'),
+            filename: path.join(config.logDir, 'proxy', 'proxy.log'),
             maxLogSize: 1024,
             backups: 3,
         },
         server: {
             type: 'file',
-            filename: path.join(config.log_dir, 'server', 'server.log'),
+            filename: path.join(config.logDir, 'server', 'server.log'),
             maxLogSize: 1024,
             backups: 3,
         },
         route: {
             type: 'DateFile',
-            filename: path.join(config.log_dir, 'route', 'route.log'),
+            filename: path.join(config.logDir, 'route', 'route.log'),
             pattern: '-yyyy-MM-dd.log',
             alwaysIncludePattern: true
         }
@@ -47,4 +47,4 @@ log4js.configure({
     }
 });
 
-export default log4js;
+module.exports = log4js;

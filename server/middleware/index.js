@@ -1,30 +1,59 @@
 /**
  * Created by Aus on 2018/3/12.
  */
-import session from 'express-session';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import redis_store from 'connect-redis';
-const RedisStore = redis_store(session);
-import config from '../config';
-import redisConfig from '../config/redis_config';
-import routeLog from './route_log';
-import signInCheck from './sign_in_check';
+const compress = require('koa-compress');
+const bodyParser = require('koa-bodyparser');
+const json = require('koa-json');
+const passport = require('koa-passport');
+const session = require('koa-generic-session');
+const redisStore = require('koa-redis');
+
+//加载koa路由模块
+const router = require('koa-router')();
+//加载koa日记模块
+const logger = require('koa-logger');
+// 静态资源代理
+const serve = require('koa-static2');
+
+const config = require('../config/');
+const redisClient = require('../config/redis_config');
+
+// import routeLog from './route_log';
+// import signInCheck from './sign_in_check';
 
 // 公共中间件按顺序配置
-export default function (app) {
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: false}));
-    app.use(cookieParser());
-    app.use(session({
-        store: new RedisStore({client: redisConfig, db: 1}),
-        secret: config.session_secret,
-        resave: true,
-        saveUninitialized: true
+module.exports = function (app) {
+    //使用logger日志库
+    app.use(logger());
+
+    //使用gzip压缩
+    app.use(compress({
+        filter: function (content_type) {
+            return /text/i.test(content_type)
+        },
+        threshold: 2048,
+        flush: require('zlib').Z_SYNC_FLUSH
     }));
 
+    //get request body
+    app.use(bodyParser());
+
+    //send request json
+    app.use(json({pretty: false}));
+
+    //use static dir
+    app.use(serve("", __dirname + "/public"));
+
+    app.use(session({
+        store: redisStore({client: redisClient, db: 0}),
+        maxAge: 86400000,
+        overwrite: true,
+        httpOnly: true,
+        signed: true
+    }, app));
+
     // 路由log
-    app.use(routeLog);
+    // app.use(routeLog);
     // 登录检查
-    app.use(signInCheck);
+    // app.use(signInCheck);
 }

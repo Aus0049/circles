@@ -1,7 +1,7 @@
 /**
  * Created by Aus on 2018/3/9.
  */
-import path from 'path';
+const path = require('path');
 
 const config = {
     debug: true,
@@ -11,24 +11,24 @@ const config = {
     db: 'mongodb://127.0.0.1:27017/circle_of_friends',
 
     // redis 配置，默认是本地
-    redis_host: '127.0.0.1',
-    redis_port: 6379,
-    redis_db: 0,
-    redis_password: '',
+    redisHost: '127.0.0.1',
+    redisPort: 6379,
+    redisDb: 0,
+    redisPassword: '',
 
-    session_secret: 'c_s',
-    salt_factory: 10,
+    sessionSecret: 'c_s',
+    saltFactory: 10,
 
     upload: {
         path: path.join(__dirname, '../public/upload/'),
         url: '/public/upload/'
     },
 
-    file_limit: '1MB',
+    fileLimit: '1MB',
 
-    log_dir: path.join(__dirname, '../logs'),
+    logDir: path.join(__dirname, '../logs'),
 
-    server_port: 9000
+    serverPort: 9000
 };
 
-export default config;
+module.exports = config;
