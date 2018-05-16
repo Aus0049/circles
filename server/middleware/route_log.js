@@ -1,10 +1,13 @@
 /**
  * Created by Aus on 2018/3/9.
  */
-import {routeLogger} from '../common/logger';
+const routeLogger = require('../common/logger').routeLogger;
+
 // 打印路由中间件
-export default function (req, res, next) {
-    routeLogger.info(`url：${req.originalUrl} start`);
-    next();
-    routeLogger.info(`url：${req.originalUrl} end`);
+module.exports = async function routeLog (ctx, next) {
+    const {request} = ctx;
+
+    routeLogger.info(`url：${request.originalUrl} start`);
+    await next();
+    routeLogger.info(`url：${request.originalUrl} end`);
 };

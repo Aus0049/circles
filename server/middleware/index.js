@@ -18,6 +18,7 @@ const serve = require('koa-static2');
 const config = require('../config/');
 const redisClient = require('../config/redis_config');
 
+const routeLog = require('./route_log');
 // import routeLog from './route_log';
 // import signInCheck from './sign_in_check';
 
@@ -53,7 +54,7 @@ module.exports = function (app) {
     }, app));
 
     // 路由log
-    // app.use(routeLog);
+    app.use(routeLog);
     // 登录检查
     // app.use(signInCheck);
-}
+};
