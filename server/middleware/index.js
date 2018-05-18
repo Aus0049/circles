@@ -17,11 +17,9 @@ const config = require('../config/');
 const redisClient = require('../config/redis_config');
 
 const routeLog = require('./route_log');
-// import routeLog from './route_log';
-// import signInCheck from './sign_in_check';
 
 // 公共中间件按顺序配置
-module.exports = function (app) {
+function applyMiddleware (app) {
     //使用logger日志库
     app.use(logger());
 
@@ -55,4 +53,6 @@ module.exports = function (app) {
     app.use(routeLog);
     // 登录检查
     // app.use(signInCheck);
-};
+}
+
+export default applyMiddleware;

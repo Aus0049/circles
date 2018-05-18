@@ -4,14 +4,9 @@
 
 // controller类的公共方法
 export default class Base {
-    parameterCheck (ctx) {
-        ctx.body = '111';
+    constructor () {
     }
-    createJSONResponseData (status = true, message = '', data = null) {
-        return {
-            status: status,
-            message: message,
-            data: data,
-        };
+    aaa () {
+        console.log(111);
     }
 }

@@ -23,6 +23,7 @@
     "connect-redis": "^3.3.3",
     "crypto": "^1.0.1",
     "ioredis": "^3.2.2",
+    "joi": "^13.3.0",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^3.0.0",
