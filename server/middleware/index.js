@@ -8,8 +8,6 @@ const passport = require('koa-passport');
 const session = require('koa-generic-session');
 const redisStore = require('koa-redis');
 
-//加载koa路由模块
-const router = require('koa-router')();
 //加载koa日记模块
 const logger = require('koa-logger');
 // 静态资源代理
