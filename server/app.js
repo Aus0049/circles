@@ -1,39 +1,39 @@
 /**
  * Created by Aus on 2018/3/9.
  */
-// import koa from 'koa';
-// import mongoose from 'mongoose';
-//
-// import config from './config/';
+import koa from 'koa';
+import mongoose from 'mongoose';
+
+import config from './config/';
 // // import routers from './route/';
 // import Controller, {instance} from './controller/';
 //
 // import logger from './common/logger';
 // import applyMiddleware from './middleware';
 
-// class Application {
-//     constructor(){
-//         //创建koa服务器应用
-//         const app = new koa();
-//
-//         // 挂载数据
-//         this.app = app;
-//         this.config = config;
-//         this.logger = logger;
-//         // 执行
-//         this.create();
-//     }
-//     create () {
-//         // 1. 中间件配置
-//         this.middlewareConfig();
-//     }
-//     middlewareConfig () {
-//         // 配置中间件
-//         this.app.keys = ['circles_aus'];
-//
-//         applyMiddleware.call(this);
-//     }
-// }
+class Application {
+    constructor(){
+        //创建koa服务器应用
+        const app = new koa();
+
+        // 挂载数据
+        this.app = app;
+        this.config = config;
+        this.logger = logger;
+        // 执行
+        this.create();
+    }
+    create () {
+        // 1. 中间件配置
+        this.middlewareConfig();
+    }
+    middlewareConfig () {
+        // 配置中间件
+        this.app.keys = ['circles_aus'];
+
+        applyMiddleware.call(this);
+    }
+}
 // class Application {
 //     constructor(){
 //         //创建koa服务器应用
