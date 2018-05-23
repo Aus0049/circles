@@ -1,8 +1,8 @@
 /**
  * Created by Aus on 2018/5/23.
  */
-import Support from './support';
+import SupportController from './support';
 
 export default {
-    support: new Support()
+    support: new SupportController()
 };

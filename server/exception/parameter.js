@@ -5,7 +5,11 @@
 export default class ParameterException extends Error {
     constructor(param, message){
         super(message);
+
         this.name = 'ParameterException';
-        this[param] = message;
+
+        this.detail = {
+            [param]: message
+        };
     }
 }
