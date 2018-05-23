@@ -16,6 +16,13 @@ export default class CaptchaProxy extends BaseProxy {
         this.name = 'CaptchaProxy';
         this.save = this.save.bind(this);
     }
+
+    /**
+     * 验证码保存
+     * @param captcha
+     * @param mobile
+     * @returns {Promise.<*>}
+     */
     async save (captcha, mobile) {
         // 先去Counts表中查找最大id
         let maxCount;

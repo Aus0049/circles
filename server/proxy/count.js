@@ -13,11 +13,25 @@ export default class CountProxy extends BaseProxy {
         this.save = this.save.bind(this);
         this.update = this.update.bind(this);
     }
+
+    /**
+     * count保存
+     * @param count
+     * @returns {Promise.<*>}
+     */
     async save (count) {
         logger.proxy.info(`${this.name} 存入count ${count}`);
 
         return await count.saveAsync();
     }
+
+    /**
+     * 更新
+     * @param conditions
+     * @param count
+     * @param options
+     * @returns {Promise.<*>}
+     */
     async update (conditions, count, options) {
         logger.proxy.info(`${this.name} 更新count ${count}`);
 

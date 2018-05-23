@@ -41,7 +41,12 @@ export default class SupportController extends BaseController {
         // 交由业务层处理
         const result = await next();
 
-        console.log(result);
+        if(result){
+            ctx.body = this.send(true, '验证码发送成功', result);
+            return;
+        }
+
+        ctx.body = this.send(false, '验证码发送失败', null);
     }
 
     /**
@@ -54,8 +59,6 @@ export default class SupportController extends BaseController {
 
         const serverResult = await Server.sms.getSignUpCaptcha(mobile);
 
-        console.log(111);
-        console.log(serverResult);
         return serverResult;
     }
 }
