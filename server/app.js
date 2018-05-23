@@ -5,6 +5,7 @@ import koa from 'koa';
 import mongoose from 'mongoose';
 
 import config from './config/';
+import routers from './route/';
 import applyMiddleware from './middleware';
 
 class Application {
@@ -27,6 +28,9 @@ class Application {
 
         // 3. 路由配置
         this.routerConfig();
+
+        // 4. 监听
+        this.listen();
     }
     middlewareConfig () {
         // 配置中间件
@@ -47,7 +51,7 @@ class Application {
             });
     }
     routerConfig(){
-
+        this.app.use(routers);
     }
     listen (){
         const {app, config} = this;
