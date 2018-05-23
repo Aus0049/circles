@@ -8,5 +8,6 @@ export default {
     redis: loggerConfig.getLogger('redis'),
     proxy: loggerConfig.getLogger('proxy'),
     server: loggerConfig.getLogger('server'),
+    controller: loggerConfig.getLogger('controller'),
     route: loggerConfig.getLogger('route')
 }
