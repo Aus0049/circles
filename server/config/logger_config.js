@@ -5,48 +5,40 @@ import log4js from 'log4js';
 import path from 'path';
 import config from './index';
 
-// 日志配置分成两个维度：层级和模块
+/**
+ * 日志配置分成两个维度：层级和模块
+ * appenders分成两种info和error
+ */
 log4js.configure({
     appenders: {
         default: { type: 'console'},
-        redis: {
+        error: {
             type: 'DateFile',
-            filename: path.join(config.logDir, 'redis', 'redis.log'),
+            filename: path.join(config.logDir, 'error', 'error.log'),
             pattern: '-yyyy-MM-dd.log',
             alwaysIncludePattern: true
         },
-        proxy: {
+        info: {
             type: 'file',
-            filename: path.join(config.logDir, 'proxy', 'proxy.log'),
-            maxLogSize: 1024,
-            backups: 3,
-        },
-        server: {
-            type: 'file',
-            filename: path.join(config.logDir, 'server', 'server.log'),
-            maxLogSize: 1024,
-            backups: 3,
-        },
-        controller: {
-            type: 'file',
-            filename: path.join(config.logDir, 'controller', 'controller.log'),
+            filename: path.join(config.logDir, 'info', 'info.log'),
             maxLogSize: 1024,
             backups: 3,
         },
         route: {
-            type: 'DateFile',
+            type: 'file',
             filename: path.join(config.logDir, 'route', 'route.log'),
-            pattern: '-yyyy-MM-dd.log',
-            alwaysIncludePattern: true
+            maxLogSize: 1024,
+            backups: 3,
         }
     },
     replaceConsole: true,
     categories: {
-        default: { appenders: ['default'], level: 'info' },
-        redis: {appenders: ['redis'], level: 'info'},
-        proxy: {appenders: ['proxy'], level: 'info'},
-        server: {appenders: ['server'], level: 'info'},
-        controller: {appenders: ['controller'], level: 'info'},
+        default: {appenders: ['default'], level: 'debug'},
+        redis: {appenders: ['info', 'error'], level: 'info'},
+        proxy: {appenders: ['info', 'error'], level: 'info'},
+        server: {appenders: ['info', 'error'], level: 'info'},
+        controller: {appenders: ['info', 'error'], level: 'info'},
+        route: {appenders: ['route'], level: 'info'}
     }
 });
 
