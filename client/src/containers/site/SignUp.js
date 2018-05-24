@@ -2,10 +2,34 @@
  * Created by Aus on 2018/4/27.
  */
 import React from 'react';
-import {Form, Input, Tooltip, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete} from 'antd';
+import {Form, Input, Tooltip, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, message} from 'antd';
 import Icon from 'component-font-awesome';
 import {verifyMobile, verifyTrue} from '../../public/validate';
 const FormItem = Form.Item;
+
+let seconds = 10;
+
+// 倒计时效果
+function countdown (that) {
+    const button = document.querySelector('#sendSMS');
+
+    button.innerHTML = `<span>重新获取（${seconds}）</span>`;
+
+    const timer = setInterval(()=>{
+        button.innerHTML = `<span>重新获取（${seconds}）</span>`;
+
+        if(seconds > 0){
+            seconds--;
+            return;
+        }
+
+        clearTimeout(timer);
+        button.innerHTML = '<span>重新发送</span>';
+        that.setState({captchaDisabled: false});
+        seconds = 60;
+
+    }, 1000);
+}
 
 // 注册
 class SignUp extends React.Component {
@@ -15,6 +39,8 @@ class SignUp extends React.Component {
         this.handleSendSMS = this.handleSendSMS.bind(this);
         this.state = {
             sendCaptchaLoading: false,
+            captchaId: null,
+            captchaDisabled: false,
             submitLoading: false
         };
     }
@@ -29,6 +55,12 @@ class SignUp extends React.Component {
         });
 
         if(hasError) return;
+
+        // 检查验证码
+        if(!this.state.captchaId){
+            message.error('请先获取验证码！');
+            return;
+        }
 
         // 请求
         // 准备数据
@@ -59,12 +91,24 @@ class SignUp extends React.Component {
         // 发送验证码
         this.props.fetchCaptcha(this.props.form.getFieldValue('mobile'))
             .then((result)=>{
+                this.setState({sendCaptchaLoading: false});
 
+                if(result.status){
+                    this.setState({
+                        captchaId: result.data.captchaId,
+                        captchaDisabled: true
+                    });
+                    // 倒数数秒
+                    countdown(this);
+                    return;
+                }
+
+                message.error(result.message);
             });
     }
     getFormItem() {
         const {getFieldDecorator} = this.props.form;
-        const {sendCaptchaLoading} = this.state;
+        const {sendCaptchaLoading, captchaDisabled} = this.state;
         const result = [];
         // 注册表单构成
 
@@ -132,32 +176,38 @@ class SignUp extends React.Component {
         result.push(
             <FormItem key="captcha">
                 <Col span={14}>
-                    {getFieldDecorator('captcha', {
-                        rules: [
-                            {required: true, message: '验证码不可为空！'},
-                            {type: 'string', min: 6, max: 6, message: '验证码长度6位'}
-                        ],
-                        validateTrigger: 'onBlur',
-                        validateFirst: true
-                    })(
-                        <Input
-                            prefix={<Icon type="mobile"/>}
-                            type="mobile"
-                            placeholder="请输入手机号码"
-                            size="large"
-                        />
-                    )}
+                    <FormItem >
+                        {getFieldDecorator('captcha', {
+                            rules: [
+                                {required: true, message: '验证码不可为空！'},
+                                {type: 'string', min: 6, max: 6, message: '验证码长度6位'}
+                            ],
+                            validateTrigger: 'onBlur',
+                            validateFirst: true
+                        })(
+                            <Input
+                                prefix={<Icon type="mobile"/>}
+                                type="mobile"
+                                placeholder="请输入手机号码"
+                                size="large"
+                            />
+                        )}
+                    </FormItem>
                 </Col>
                 <Col className="sms-box" span={10}>
-                    <Button
-                        className="send-sms"
-                        type="primary"
-                        size="large"
-                        loading={sendCaptchaLoading}
-                        onClick={this.handleSendSMS}
-                    >
-                        发送验证码
-                    </Button>
+                    <FormItem>
+                        <Button
+                            id="sendSMS"
+                            className="send-sms"
+                            type="primary"
+                            size="large"
+                            disabled={captchaDisabled}
+                            loading={sendCaptchaLoading}
+                            onClick={this.handleSendSMS}
+                        >
+                            发送验证码
+                        </Button>
+                    </FormItem>
                 </Col>
             </FormItem>
         );
