@@ -34,7 +34,7 @@ export default class SupportController extends BaseController {
                 value: ${JSON.stringify(validateResult.value)}`
             );
 
-            ctx.body = this.send(false, '参数校验失败', validateResult.error.detail);
+            ctx.body = this.sendError('参数校验失败', validateResult.error.detail);
             return;
         }
 
@@ -42,11 +42,11 @@ export default class SupportController extends BaseController {
         const result = await next();
 
         if(result){
-            ctx.body = this.send(true, '验证码发送成功', result);
+            ctx.body = this.sendSuccess('验证码发送成功', result);
             return;
         }
 
-        ctx.body = this.send(false, '验证码发送失败', null);
+        ctx.body = this.sendError('验证码发送失败', null);
     }
 
     /**

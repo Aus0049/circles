@@ -13,9 +13,22 @@ export default class BaseController {
      * @param message
      * @param data
      */
-    send (status = true, message = '', data = null) {
+    sendSuccess (message = '', data = null) {
         return {
-            status: status,
+            status: true,
+            message: message,
+            data: data,
+        }
+    }
+
+    /**
+     *
+     * @param message
+     * @param data
+     */
+    sendError (message = '', data = null) {
+        return {
+            status: false,
             message: message,
             data: data,
         }
