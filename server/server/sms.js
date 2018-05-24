@@ -50,8 +50,7 @@ export default class SMSServer extends BaseServer {
 
             // 验证码id和验证码返回controller
             return {
-                captchaId: captcha.captcha_id,
-                captchaCode: captcha.captcha_code,
+                captchaId: captcha.captcha_id
             };
         } catch (error){
             // 验证码发送失败
