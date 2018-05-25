@@ -3,6 +3,8 @@
  */
 import SMSServer from './sms';
 
-export default {
+const server = {
     sms: new SMSServer()
-}
+};
+
+export default server;

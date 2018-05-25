@@ -4,7 +4,9 @@
 import CaptchaProxy from './captcha';
 import CountProxy from './count';
 
-export default {
+const proxy = {
     captcha: new CaptchaProxy(),
-    count: new CountProxy(),
+    count: new CountProxy()
 };
+
+export default proxy;

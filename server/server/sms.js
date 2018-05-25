@@ -4,24 +4,23 @@
 import BaseServer from './base';
 import smsClient, {companyName, signUpTemplateCode} from '../common/ali_sms';
 import Proxy from '../proxy/';
-import logger from '../common/logger';
 
 const Captcha = Proxy.captcha;
 
 export default class SMSServer extends BaseServer {
     constructor () {
         super();
-        this.name = 'SMSServer';
-        this.create4BitsCaptcha = this.create4BitsCaptcha.bind(this);
+        this.createNumberCaptcha = this.createNumberCaptcha.bind(this);
         this.getSignUpCaptcha = this.getSignUpCaptcha.bind(this);
     }
 
     /**
-     * 生成思维随机数
+     * 生成数字随机数
+     * @param bits
      * @returns {*}
      */
-     create4BitsCaptcha () {
-        return Math.random().toFixed(4).split('.')[1];
+     createNumberCaptcha (bits = 4) {
+        return Math.random().toFixed(bits).split('.')[1];
     }
 
     /**
@@ -32,7 +31,7 @@ export default class SMSServer extends BaseServer {
     async getSignUpCaptcha (mobile) {
         try {
             // 1.创建简单验证码
-            const captchaCode = this.create4BitsCaptcha();
+            const captchaCode = this.createNumberCaptcha();
 
             // 2. 结果入库
             const captcha = await Captcha.save(captchaCode, mobile);
@@ -46,16 +45,15 @@ export default class SMSServer extends BaseServer {
             });
 
             // 验证码发送成功
-            logger.server.info(`${this.name} ${mobile}验证码发送成功！id: ${captcha.captcha_id}, code: ${captchaCode}`);
+            this.loggerInfo(`${mobile}验证码发送成功！id: ${captcha.captcha_id}, code: ${captchaCode}`);
 
             // 验证码id和验证码返回controller
-            return {
-                captchaId: captcha.captcha_id
-            };
+            return {captchaId: captcha.captcha_id};
+
         } catch (error){
             // 验证码发送失败
-            logger.server.error(`${this.name} ${mobile}验证码发送失败！`);
-            logger.server.error(`smsRes: ${error}`);
+            this.loggerError(`${mobile}验证码发送失败！`);
+            this.loggerError(`smsRes: ${error}`);
 
             return undefined;
         }

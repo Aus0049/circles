@@ -7,6 +7,6 @@ import Controller from '../controller/';
 const router = new Router();
 
 // support模块下的路径 路由表
-router.post('/send-sms-code-for-sign', Controller.support.sendSMSCodeForSignValidate, Controller.support.sendSMSCodeForSign);
+router.post('/send-sms-code-for-sign', Controller.support.sendSMSCodeForSign);
 
 export default router;

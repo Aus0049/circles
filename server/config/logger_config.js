@@ -21,13 +21,13 @@ log4js.configure({
         info: {
             type: 'file',
             filename: path.join(config.logDir, 'info', 'info.log'),
-            maxLogSize: 1024,
+            maxLogSize: 1024 * 10,
             backups: 3,
         },
         route: {
             type: 'file',
             filename: path.join(config.logDir, 'route', 'route.log'),
-            maxLogSize: 1024,
+            maxLogSize: 1024 * 10,
             backups: 3,
         }
     },

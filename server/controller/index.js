@@ -3,6 +3,8 @@
  */
 import SupportController from './support';
 
-export default {
+const controller = {
     support: new SupportController()
 };
+
+export default controller;

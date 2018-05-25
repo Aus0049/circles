@@ -3,24 +3,22 @@
  */
 import Joi from 'joi';
 import BaseController from './base';
-import logger from '../common/logger';
+
 import ParameterException from '../exception/parameter';
 import Server from '../server/';
 
 export default class SupportController extends BaseController {
     constructor () {
         super();
-        this.sendSMSCodeForSignValidate = this.sendSMSCodeForSignValidate.bind(this);
         this.sendSMSCodeForSign = this.sendSMSCodeForSign.bind(this);
     }
 
     /**
      * 注册发送验证码参数校验
      * @param ctx
-     * @param next
      * @returns {Promise.<void>}
      */
-    async sendSMSCodeForSignValidate (ctx, next) {
+    async sendSMSCodeForSign (ctx) {
         const schema = {
             mobile: Joi.string().regex(/^(1[3|5|8|9])\d{9}$/).required().error(new ParameterException('mobile', '手机号校验失败'))
         };
@@ -28,7 +26,7 @@ export default class SupportController extends BaseController {
         const validateResult = Joi.validate(ctx.request.body, schema);
 
         if(validateResult.error){
-            logger.controller.error(
+            this.loggerError (
                 `${ctx.request.url} 参数校验失败：
                 ${validateResult.error.name} ${validateResult.error.message} 
                 value: ${JSON.stringify(validateResult.value)}`
@@ -39,7 +37,9 @@ export default class SupportController extends BaseController {
         }
 
         // 交由业务层处理
-        const result = await next();
+        const {mobile} = ctx.request.body;
+
+        const result = await Server.sms.getSignUpCaptcha(mobile);
 
         if(result){
             ctx.body = this.sendSuccess('验证码发送成功', result);
@@ -47,18 +47,5 @@ export default class SupportController extends BaseController {
         }
 
         ctx.body = this.sendError('验证码发送失败', null);
-    }
-
-    /**
-     * 注册发送验证码业务逻辑
-     * @param ctx
-     */
-    async sendSMSCodeForSign (ctx) {
-        // 调用业务层
-        const {mobile} = ctx.request.body;
-
-        const serverResult = await Server.sms.getSignUpCaptcha(mobile);
-
-        return serverResult;
     }
 }
