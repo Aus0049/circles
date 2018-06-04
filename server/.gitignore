@@ -9,6 +9,7 @@
 
 # personal
 /common/ali_sms.js
+/config/index.js
 
 # misc
 .DS_Store

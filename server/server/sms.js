@@ -2,9 +2,11 @@
  * Created by Aus on 2018/5/23.
  */
 import BaseServer from './base';
-import smsClient, {companyName, signUpTemplateCode} from '../common/ali_sms';
+import smsClient from '../common/ali_sms';
+import config from '../config/';
 import Proxy from '../proxy/';
 
+const {companyName, signUpTemplateCode} = config;
 const Captcha = Proxy.captcha;
 
 export default class SMSServer extends BaseServer {
