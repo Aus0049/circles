@@ -3,11 +3,17 @@
  */
 import logger from '../common/logger';
 
-// 打印路由中间件
+// 路由时间测算
 export default async function routeLog (ctx, next) {
     const {request} = ctx;
 
+    const startTime = new Date().getTime();
+
     logger.route.info(`url：${request.originalUrl} start`);
+
     await next();
-    logger.route.info(`url：${request.originalUrl} end`);
+
+    const timeDiff = new Date().getTime() - startTime;
+
+    logger.route.info(`url：${request.originalUrl} end ${timeDiff}ms`);
 };

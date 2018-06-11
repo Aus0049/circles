@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import config from './config/';
 import routers from './route/';
 import applyMiddleware from './middleware';
+import CSRF from 'koa-csrf';
 
 class Application {
     constructor(){
@@ -37,6 +38,16 @@ class Application {
         this.app.keys = ['circles_aus'];
 
         applyMiddleware.call(this);
+
+        // csrf
+        this.app.use(new CSRF({
+            invalidSessionSecretMessage: 'Invalid session secret',
+            invalidSessionSecretStatusCode: 403,
+            invalidTokenMessage: 'Invalid CSRF token',
+            invalidTokenStatusCode: 403,
+            excludedMethods: [ 'GET', 'HEAD', 'OPTIONS' ],
+            disableQuery: false
+        }));
     }
     dbConfig () {
         const {config} = this;
